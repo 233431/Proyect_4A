@@ -5,11 +5,161 @@
   <title>UsersPosts</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Google Fonts and Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
-<body class="mat-typography">
-  <app-root></app-root>
+<body>
+  <div class="container">
+    <h1>Users Table</h1>
+
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>28</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>34</td>
+          <td>jane@example.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Add User</h2>
+    <form id="userForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" required>
+      </div>
+      <button type="submit">Add User</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const email = document.getElementById('email').value;
+      
+      const table = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+      
+      const nameCell = newRow.insertCell(0);
+      const ageCell = newRow.insertCell(1);
+      const emailCell = newRow.insertCell(2);
+      
+      nameCell.innerHTML = name;
+      ageCell.innerHTML = age;
+      emailCell.innerHTML = email;
+      
+      // Clear form inputs
+      document.getElementById('name').value = '';
+      document.getElementById('age').value = '';
+      document.getElementById('email').value = '';
+    });
+  </script>
 </body>
 </html>
